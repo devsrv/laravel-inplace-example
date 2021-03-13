@@ -33,4 +33,14 @@
         />
     </div>
 
+    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+        <x-inplace-component
+            model="users:1"
+            :inline="true"
+            render-as="custom-inline-render"
+        >
+            hello there custom
+        </x-inplace-component>
+    </div>
+
 @endsection
