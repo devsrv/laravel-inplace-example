@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+        <label>Simplest</label>
         <x-inplace-component
             model="App\Models\User:name,1"
             :inline="true"
@@ -13,6 +14,7 @@
     </div>
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+        <label>Slotted Markup</label>
         <x-inplace-component
             model="App\Models\User:email,1"
             :inline="true"
@@ -45,12 +47,13 @@
     </div>
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+        <label>Render as custom</label>
         <x-inplace-component
-            model="App\Models\User:name,1"
+            model="App\Models\Post:title,1"
             :inline="true"
             render-as="CustomInlineRender"
         >
-            Render as custom
+        {{ \App\Models\Post::find(1)->title }}
         </x-inplace-component>
     </div>
 
