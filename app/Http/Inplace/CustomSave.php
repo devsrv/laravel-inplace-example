@@ -3,10 +3,11 @@
 namespace App\Http\Inplace;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use devsrv\inplace\Traits\SpatieAuthorize;
 
 class CustomSave
 {
-    use AuthorizesRequests;
+    use AuthorizesRequests, SpatieAuthorize;
 
     public function save($model, $column, $value) {
         /*-----------------------------
@@ -19,6 +20,18 @@ class CustomSave
         | MANUAL AUTHORIZATION
         | -----------------------------
         | Gate::authorize('update', $model);
+        |
+        | // or any other type of authorization possible like-
+        | Gate::authorize('edit-settings');
+        | $this->authorize('update', $model);
+        */
+
+        /*-----------------------------
+        | SPATIE ROLE PERMISSION AUTHORIZATION
+        | -----------------------------
+        | use SpatieAuthorize;
+        |
+        | $this->authorizeSpatieRoleOrPermission(['applicant', 'app login access']);
         |
         | // or any other type of authorization possible like-
         | Gate::authorize('edit-settings');
