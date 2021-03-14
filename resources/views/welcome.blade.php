@@ -30,7 +30,7 @@
             model="users:1"
             :inline="true"
             value="hello there"
-            saveusing="App\Http\Inplace\CustomSave"
+            :saveusing="App\Http\Inplace\CustomSave"
         />
     </div>
 
@@ -39,6 +39,7 @@
             model="users:1"
             :inline="true"
             saveusing="App\Http\Inplace\CustomSave"
+            validation="required|email"
         >
             HELLO SOURAV
         </x-inplace-component>
@@ -48,7 +49,7 @@
         <x-inplace-component
             model="users:1"
             :inline="true"
-            render-as="custom-inline-render"
+            render-as="CustomInlineRender"
         >
             hello there custom
         </x-inplace-component>
