@@ -30,7 +30,18 @@
             model="users:1"
             :inline="true"
             value="hello there"
+            saveusing="App\Http\Inplace\CustomSave"
         />
+    </div>
+
+    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+        <x-inplace-component
+            model="users:1"
+            :inline="true"
+            saveusing="App\Http\Inplace\CustomSave"
+        >
+            HELLO SOURAV
+        </x-inplace-component>
     </div>
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
