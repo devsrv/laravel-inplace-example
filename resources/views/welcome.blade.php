@@ -45,7 +45,7 @@
             validation="required|min:10"
             :authorize="false"
         >
-            With Model slotted custom save
+            With Model slotted custom save + (manual authorization)
         </x-inplace-component>
     </div>
 
