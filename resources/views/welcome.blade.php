@@ -4,54 +4,53 @@
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <x-inplace-component
-            model="users:1"
+            model="App\Models\User:1"
             :inline="true"
             validation="required|min:10"
         >
-        Lorem Ipsum
+        Basic
         </x-inplace-component>
     </div>
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <x-inplace-component
-            model="users:1"
+            model="App\Models\User:1"
             :inline="true"
             validation="required|min:10"
         >
         <x-slot name="before"><div class="myclass anotherclass"><h2></x-slot>
         <x-slot name="after"></h2></div></x-slot>
 
-        Lorem Ipsum is simply Souravd
+        Slotted markup
         </x-inplace-component>
     </div>
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <x-inplace-component
-            model="users:1"
+            model="App\Models\User:1"
             :inline="true"
-            value="hello there"
-            :saveusing="App\Http\Inplace\CustomSave"
+            value="custom save model"
+            saveusing="App\Http\Inplace\CustomSave"
         />
     </div>
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <x-inplace-component
-            model="users:1"
             :inline="true"
             saveusing="App\Http\Inplace\CustomSave"
             validation="required|email"
         >
-            HELLO SOURAV
+            No Model custom save
         </x-inplace-component>
     </div>
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <x-inplace-component
-            model="users:1"
+            model="App\Models\User:1"
             :inline="true"
             render-as="CustomInlineRender"
         >
-            hello there custom
+            Render as custom
         </x-inplace-component>
     </div>
 
