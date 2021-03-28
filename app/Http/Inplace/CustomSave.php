@@ -38,10 +38,16 @@ class CustomSave
         */
 
         // save data here
+        $model->{$column} = $value;
+        if($model->save()) {
+            return [
+                'success' => 1,
+            ];
+        }
 
         return [
             'success' => 0,
-            'message' => 'not allowed'
+            'message' => 'not possible'
         ];
     }
 }
