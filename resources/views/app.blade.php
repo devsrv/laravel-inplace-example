@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
 
         <!-- Styles -->
         <style>
@@ -38,19 +39,29 @@
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
         <script src="{{ asset('assets/js/bootstrap-notify.min.js') }}"></script>
 
         @include('inplace::scripts')
 
         <script>
             (function(){
-                window.addEventListener('inline-editable-finish', function(data) {
+                window.addEventListener('inplace-editable-finish', function(data) {
                     $.notify({
-                        title: "inline-editable-finish",
+                        title: "inplace-editable-finish",
                         message: data.detail.success ? "Content successfully saved" : "Error! Failed to save data"
                     },{
                         type: data.detail.success ? 'info' : 'danger'
                     });
+                });
+
+                window.addEventListener('inplace-editable-progress', function(data) {
+                    if(data.detail.start) {
+                        NProgress.start();
+                        return;
+                    }
+
+                    NProgress.done();
                 });
             })();
         </script>
