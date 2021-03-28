@@ -37,7 +37,23 @@
 
         </div>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{{ asset('assets/js/bootstrap-notify.min.js') }}"></script>
+
         @include('inplace::scripts')
+
+        <script>
+            (function(){
+                window.addEventListener('inline-editable-finish', function(data) {
+                    $.notify({
+                        title: "inline-editable-finish",
+                        message: data.detail.success ? "Content successfully saved" : "Error! Failed to save data"
+                    },{
+                        type: data.detail.success ? 'info' : 'danger'
+                    });
+                });
+            })();
+        </script>
 
     </body>
 </html>
