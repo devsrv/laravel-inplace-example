@@ -14,8 +14,26 @@
                 model="App\Models\User:name,1"
                 :inline="true"
                 validation="required|min:10"
+                :authorize="false"
             >
             {{ \App\Models\User::find(1)->name }}
+            </x-inplace-component>
+        </div>
+
+        <div class="border-bottom col-12 my-3 pb-3">
+            @php
+            // $rules = serialize(['required', \Illuminate\Validation\Rule::in(['11', '12']), 'min:2']);
+            $rules = serialize(['required', 'exists:users,name']);
+            @endphp
+
+            <label>Complex validation rules</label>
+            <x-inplace-component
+                inline
+                model="App\Models\User:name,1"
+                :validation="$rules"
+                :authorize="true"
+            >
+                {{ \App\Models\User::find(1)->name }}
             </x-inplace-component>
         </div>
 
@@ -38,20 +56,21 @@
             <label>No Model Custom Save</label>
             <x-inplace-component
                 :inline="true"
-                value="custom save model"
+                :value="\App\Models\Post::find(1)->description"
                 saveusing="App\Http\Inplace\CustomSave"
             />
         </div>
 
         <div class="border-bottom col-12 my-3 pb-3">
+            <label>With Model slotted custom save + (manual authorization)</label>
             <x-inplace-component
                 :inline="true"
-                model="App\Models\Post:title,1"
+                model="App\Models\Post:topic,1"
                 saveusing="App\Http\Inplace\CustomSave"
                 validation="required|min:10"
                 :authorize="false"
             >
-                With Model slotted custom save + (manual authorization)
+                {{ \App\Models\Post::find(1)->topic }}
             </x-inplace-component>
         </div>
 
