@@ -1,0 +1,3 @@
+*.json
+resources/assets/js/*.hot-update.js
+resources/assets/js/*/*.LICENSE.txt
