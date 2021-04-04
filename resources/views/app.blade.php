@@ -17,13 +17,6 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
-            div.editable{
-                display: flex;
-                align-items: center;
-            }
-            .edit-target{
-                padding: 10px;
-            }
         </style>
 
         @include('inplace::styles')
