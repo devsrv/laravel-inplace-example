@@ -96,6 +96,8 @@
                 :with-query="function($query) { return $query->where('id', '>', 1); }"
                 validation="required|min:10"
                 :authorize="false"
+                thumbnailed
+                :thumbnail-width="50"
             >
             {{ \App\Models\User::find(3)->badges()->pluck('label')->implode(', ') }}
             </x-inplace-relation>
