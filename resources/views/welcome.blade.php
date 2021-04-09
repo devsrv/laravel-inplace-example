@@ -87,7 +87,19 @@
     </div>
 
     <div class="col-12 col-md-4">
-        <h3>More to come</h3>
+        <div class="border-bottom col-12 my-3 pb-3">
+            <label>Simplest</label>
+            <x-inplace-relation
+                model="App\Models\User:3"
+                relation-name="badges"
+                relation-column="label"
+                :with-query="function($query) { return $query->where('id', '>', 1); }"
+                validation="required|min:10"
+                :authorize="false"
+            >
+            {{ \App\Models\User::find(3)->badges()->pluck('label')->implode(', ') }}
+            </x-inplace-relation>
+        </div>
     </div>
 
     <div class="col-12 col-md-4">
