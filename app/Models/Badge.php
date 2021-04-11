@@ -11,7 +11,7 @@ class Badge extends Model
 
     protected $guarded = [];
 
-    public function inplaceThumb() {
+    public function getInplaceThumbAttribute() {
         return 'assets/img/'. match($this->label) {
             'silver' => 'capt.jpg',
             'navy' => 'cyclopse.jpg',
