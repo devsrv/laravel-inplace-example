@@ -45,8 +45,8 @@
                 validation="required|email"
                 :authorize="false"
             >
-            <x-slot name="before"><div class="myclass anotherclass"><h2></x-slot>
-            <x-slot name="after"></h2></div></x-slot>
+            <x-slot name="before"><div class="myclass anotherclass"><h4></x-slot>
+            <x-slot name="after"></h4></div></x-slot>
 
             {{ \App\Models\User::find(1)->email }}
             </x-inplace-component>
@@ -87,19 +87,55 @@
     </div>
 
     <div class="col-12 col-md-4">
+        <div class="alert alert-primary" role="alert">
+            <h2>Eloquent Relations</h2>
+        </div>
+
+        <h4 class="badge bg-light text-dark p-3">BelongsToMany</h4>
+
         <div class="border-bottom col-12 my-3 pb-3">
-            <label>Simplest</label>
+            <label>Simplest</label><br>
+            <x-inplace-relation
+                :model="App\Models\User::find(3)"
+                relation-name="badges"
+                relation-column="label"
+            />
+        </div>
+
+        <div class="border-bottom col-12 my-3 pb-3">
+            <label>Direct Attribute</label><br>
             <x-inplace-relation
                 model="App\Models\User:3"
                 relation-name="badges"
                 relation-column="label"
-                :with-query="function($query) { return $query->where('id', '>', 1); }"
+                :filter-options="function($query) { return $query->where('id', '>', 1); }"
+                render-template="partials.badge-list"
                 validation="required|min:10"
                 :authorize="false"
                 thumbnailed
                 :thumbnail-width="50"
             >
-            {{ \App\Models\User::find(3)->badges()->pluck('label')->implode(', ') }}
+
+            </x-inplace-relation>
+        </div>
+
+        <div class="border-bottom col-12 my-3 pb-3">
+            <label>Via Provider</label><br>
+            <x-inplace-relation
+                id="AUTHOR_BADGES"
+                model="App\Models\User:3"
+            >
+
+            </x-inplace-relation>
+        </div>
+
+        <div class="border-bottom col-12 my-3 pb-3">
+            <label>Via Provider</label><br>
+            <x-inplace-relation
+                id="AUTHOR_BADGES2"
+                model="App\Models\User:3"
+            >
+
             </x-inplace-relation>
         </div>
     </div>
