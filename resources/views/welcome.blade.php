@@ -11,10 +11,8 @@
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Simplest</label>
             <x-inplace-inline
-                {{-- model="App\Models\User:1" --}}
-                {{-- model="$user" --}}
-                {{-- column="name" --}}
-                model="App\Models\User:name,1"
+                :model="\App\Models\User::find(1)"
+                column="name"
                 validation="required|min:10"
                 :authorize="false"
             >
@@ -31,8 +29,8 @@
 
             <label>Complex validation rules</label>
             <x-inplace-inline
-                inline
-                model="App\Models\User:name,1"
+                model="App\Models\User:1"
+                column="name"
                 :validation="$rules"
                 :authorize="true"
             >
@@ -43,8 +41,8 @@
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Slotted Markup with global authorize override</label>
             <x-inplace-inline
-                model="App\Models\User:email,1"
-                :inline="true"
+                model="App\Models\User:1"
+                column="email"
                 validation="required|email"
                 :authorize="false"
             >
@@ -58,7 +56,6 @@
         <div class="border-bottom col-12 my-3 pb-3">
             <label>No Model Custom Save</label>
             <x-inplace-inline
-                :inline="true"
                 :value="\App\Models\Post::find(1)->description"
                 saveusing="App\Http\Inplace\CustomSave"
             />
@@ -67,8 +64,8 @@
         <div class="border-bottom col-12 my-3 pb-3">
             <label>With Model slotted custom save + (manual authorization)</label>
             <x-inplace-inline
-                :inline="true"
-                model="App\Models\Post:topic,1"
+                model="App\Models\Post:1"
+                column="topic"
                 saveusing="App\Http\Inplace\CustomSave"
                 validation="required|min:10"
                 :authorize="false"
@@ -80,8 +77,8 @@
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Render as custom</label>
             <x-inplace-inline
-                model="App\Models\Post:title,1"
-                :inline="true"
+                model="App\Models\Post:1"
+                column="title"
                 render-as="CustomInlineRender"
             >
             {{ \App\Models\Post::find(1)->title }}
