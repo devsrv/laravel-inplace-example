@@ -2,5 +2,5 @@
 
 return [
     'authorize' => env('INPLACE_ENABLE_AUTHORIZATION', false),
-    'middleware' => ['web']
+    'middleware' => ['web', 'auth']
 ];
