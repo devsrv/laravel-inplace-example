@@ -136,7 +136,12 @@
                 id="AUTHOR_BADGES2"
                 model="App\Models\User:3"
             >
-
+                <x-slot name="before">
+                    <div class="myclass anotherclass"><h4>
+                </x-slot>
+                <x-slot name="after">
+                    </h4></div>
+                </x-slot>
             </x-inplace-relation>
         </div>
     </div>
