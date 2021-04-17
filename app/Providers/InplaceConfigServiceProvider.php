@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use devsrv\inplace\{InplaceConfig, RelationManager};
+use devsrv\inplace\{InplaceConfig, RelationManager, InlineEdit};
 
 class InplaceConfigServiceProvider extends ServiceProvider
 {
@@ -18,7 +18,14 @@ class InplaceConfigServiceProvider extends ServiceProvider
     {
         return [
             'inline' => [
-
+                InlineEdit::make('USERNAME')
+                ->column('name')
+                ->validation(['required', 'min:10'])
+                ->authorize(true)
+                // ->middleware(['auth'])
+                // ->withoutMiddleware()
+                // ->renderComponent('CustomInlineRender')
+                // ->saveUsing(\App\Http\Inplace\CustomSave::class)
             ],
             'relation' => [
                 RelationManager::make('AUTHOR_BADGES')
