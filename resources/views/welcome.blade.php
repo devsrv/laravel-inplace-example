@@ -10,15 +10,18 @@
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Simplest</label>
-            <x-inplace-component
+            <x-inplace-inline
+                {{-- model="App\Models\User:1" --}}
+                {{-- model="$user" --}}
+                {{-- column="name" --}}
                 model="App\Models\User:name,1"
-                :inline="true"
                 validation="required|min:10"
                 :authorize="false"
             >
             {{ \App\Models\User::find(1)->name }}
-            </x-inplace-component>
+            </x-inplace-inline>
         </div>
+
 
         <div class="border-bottom col-12 my-3 pb-3">
             @php
@@ -27,19 +30,19 @@
             @endphp
 
             <label>Complex validation rules</label>
-            <x-inplace-component
+            <x-inplace-inline
                 inline
                 model="App\Models\User:name,1"
                 :validation="$rules"
                 :authorize="true"
             >
                 {{ \App\Models\User::find(1)->name }}
-            </x-inplace-component>
+            </x-inplace-inline>
         </div>
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Slotted Markup with global authorize override</label>
-            <x-inplace-component
+            <x-inplace-inline
                 model="App\Models\User:email,1"
                 :inline="true"
                 validation="required|email"
@@ -49,12 +52,12 @@
             <x-slot name="after"></h4></div></x-slot>
 
             {{ \App\Models\User::find(1)->email }}
-            </x-inplace-component>
+            </x-inplace-inline>
         </div>
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>No Model Custom Save</label>
-            <x-inplace-component
+            <x-inplace-inline
                 :inline="true"
                 :value="\App\Models\Post::find(1)->description"
                 saveusing="App\Http\Inplace\CustomSave"
@@ -63,7 +66,7 @@
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>With Model slotted custom save + (manual authorization)</label>
-            <x-inplace-component
+            <x-inplace-inline
                 :inline="true"
                 model="App\Models\Post:topic,1"
                 saveusing="App\Http\Inplace\CustomSave"
@@ -71,19 +74,20 @@
                 :authorize="false"
             >
                 {{ \App\Models\Post::find(1)->topic }}
-            </x-inplace-component>
+            </x-inplace-inline>
         </div>
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Render as custom</label>
-            <x-inplace-component
+            <x-inplace-inline
                 model="App\Models\Post:title,1"
                 :inline="true"
                 render-as="CustomInlineRender"
             >
             {{ \App\Models\Post::find(1)->title }}
-            </x-inplace-component>
+            </x-inplace-inline>
         </div>
+
     </div>
 
     <div class="col-12 col-md-4">
