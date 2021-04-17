@@ -14,8 +14,21 @@
                 :model="\App\Models\User::find(1)"
                 column="name"
                 validation="required|min:10"
-                :authorize="false"
+                :authorize="true"
             >
+            {{ \App\Models\User::find(1)->name }}
+            </x-inplace-inline>
+        </div>
+
+        <div class="border-bottom col-12 my-3 pb-3">
+            <label>using provider config</label>
+            <x-inplace-inline
+                id="USERNAME"
+                :model="\App\Models\User::find(1)"
+            >
+            <x-slot name="before"><div class="bg-dark"><h4 class="text-info"></x-slot>
+            <x-slot name="after"></h4></div></x-slot>
+
             {{ \App\Models\User::find(1)->name }}
             </x-inplace-inline>
         </div>
@@ -54,8 +67,9 @@
         </div>
 
         <div class="border-bottom col-12 my-3 pb-3">
-            <label>No Model Custom Save</label>
+            <label>Custom Save</label>
             <x-inplace-inline
+                :model="\App\Models\Post::find(1)"
                 :value="\App\Models\Post::find(1)->description"
                 saveusing="App\Http\Inplace\CustomSave"
             />
