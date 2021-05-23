@@ -22,13 +22,16 @@ class Relation
                 };
             })
             ->filterOptions(fn($query) => $query->where('label', '!=', 'olive'))
-            ->renderTemplate('partials.badge-list', fn($q) => $q->where('label', '!=', 'olive')),
+            ->renderTemplate('partials.badge-list', fn($q) => $q->where('label', '!=', 'olive'))
+            ->authorizeUsing(fn() => ! auth()->check()),
+            // ->bypassAuthorize(),
 
 
             RelationManager::make('AUTHOR_BADGES2')
             ->relation('badges', 'label')
             ->thumbnailed()
-            ->renderUsing(fn($q) => $q->pluck('label')->implode('/')),
+            ->renderUsing(fn($q) => $q->pluck('label')->implode('/'))
+            ->multiple(false),
         ];
     }
 }
