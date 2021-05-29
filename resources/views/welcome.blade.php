@@ -107,7 +107,7 @@
         </div>
 
         <h4 class="badge bg-light text-dark p-3">BelongsToMany</h4>
-
+        {{--
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Simplest</label><br>
             <x-inplace-relation
@@ -116,6 +116,7 @@
                 relation-column="label"
             />
         </div>
+        --}}
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Direct Attribute</label><br>
@@ -123,12 +124,13 @@
                 model="App\Models\User:3"
                 relation-name="badges"
                 relation-column="label"
-                :filter-options="function($query) { return $query->where('id', '>', 1); }"
+                :filter-options-query="function($query) { return $query->where('id', '>', 1); }"
                 render-template="partials.badge-list"
-                validation="required|min:10"
-                :authorize="false"
+                validation="required|array"
+                validate-each="in:5,6"
                 thumbnailed
                 :thumbnail-width="50"
+                {{-- :multiple --}}
             >
 
             </x-inplace-relation>
