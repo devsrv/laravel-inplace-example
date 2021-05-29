@@ -23,8 +23,10 @@ class Relation
             })
             ->filterOptions(fn($query) => $query->where('label', '!=', 'olive'))
             ->renderTemplate('partials.badge-list', fn($q) => $q->where('label', '!=', 'olive'))
-            ->authorizeUsing(fn() => ! auth()->check()),
-            // ->bypassAuthorize(),
+            ->validation(['required', 'array'])
+            ->validateEach(['in:5,6'])
+            // ->authorizeUsing(fn() => ! auth()->check()),
+            ->bypassAuthorize(),
 
 
             RelationManager::make('AUTHOR_BADGES2')
