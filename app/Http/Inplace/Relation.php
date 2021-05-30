@@ -3,6 +3,7 @@
 namespace App\Http\Inplace;
 
 use devsrv\inplace\RelationManager;
+use App\Http\Inplace\Requests\SaveAuthorBadge;
 
 class Relation
 {
@@ -25,7 +26,8 @@ class Relation
             ->renderTemplate('partials.badge-list', fn($q) => $q->where('label', '!=', 'olive'))
             ->validation(['required', 'array'])
             ->validateEach(['in:5,6'])
-            ->middleware(['auth', 'foo'])
+            ->middleware(['auth'])
+            ->saveUsing(new SaveAuthorBadge)
             // ->authorizeUsing(fn() => ! auth()->check()),
             ->bypassAuthorize(),
 
