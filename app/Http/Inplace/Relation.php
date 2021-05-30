@@ -25,6 +25,7 @@ class Relation
             ->renderTemplate('partials.badge-list', fn($q) => $q->where('label', '!=', 'olive'))
             ->validation(['required', 'array'])
             ->validateEach(['in:5,6'])
+            ->middleware(['auth', 'foo'])
             // ->authorizeUsing(fn() => ! auth()->check()),
             ->bypassAuthorize(),
 
