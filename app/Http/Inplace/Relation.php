@@ -23,7 +23,8 @@ class Relation
                 };
             })
             ->filterOptions(fn($query) => $query->where('label', '!=', 'olive'))
-            ->renderTemplate('partials.badge-list', fn($q) => $q->where('label', '!=', 'olive'))
+            ->renderTemplate('partials.badge-list')
+            // ->renderUsing(fn($q) => $q->pluck('label')->implode('/'))
             ->validation(['required', 'array'])
             ->validateEach(['in:5,6'])
             ->middleware(['auth'])
