@@ -23,7 +23,7 @@
 
     </head>
     <body>
-        <strong>@auth You're Logged in @else Guest @endauth</strong>
+        <strong>@auth You're Logged in @else Guest <a href="/login" class="btn btn-secondary">login</a> @endauth</strong>
 
         <div class="container mt-5">
 
