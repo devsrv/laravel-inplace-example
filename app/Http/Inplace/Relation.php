@@ -26,7 +26,7 @@ class Relation
             ->renderTemplate('partials.badge-list')
             // ->renderUsing(fn($q) => $q->pluck('label')->implode('/'))
             ->validation(['required', 'array'])
-            ->validateEach(['in:5,6'])
+            // ->validateEach(['in:5,6'])
             ->middleware(['auth'])
             ->saveUsing(new SaveAuthorBadge)
             // ->authorizeUsing(fn() => ! auth()->check()),
