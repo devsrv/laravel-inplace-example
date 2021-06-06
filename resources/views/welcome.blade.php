@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="row">
+    {{--
     <div class="col-12 col-md-4">
         <div class="alert alert-primary" role="alert">
             <h2>Inline text editable</h2>
@@ -100,6 +101,7 @@
         </div>
 
     </div>
+    --}}
 
     <div class="col-12 col-md-4">
         <div class="alert alert-primary" role="alert">
@@ -107,7 +109,6 @@
         </div>
 
         <h4 class="badge bg-light text-dark p-3">BelongsToMany</h4>
-        {{--
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Simplest</label><br>
             <x-inplace-relation
@@ -116,7 +117,25 @@
                 relation-column="label"
             />
         </div>
-        --}}
+
+        <div class="border-bottom col-12 my-3 pb-3">
+            <label>Direct Attribute</label><br>
+            <x-inplace-relation
+                model="App\Models\User:2"
+                relation-name="badges"
+                relation-column="label"
+                :filter-options-query="function($query) { return $query->where('id', '>', 1); }"
+                render-template="partials.badge-list"
+                {{-- validation="required|array"
+                validate-each="in:5,6" --}}
+                thumbnailed
+                :thumbnail-width="50"
+                :multiple
+            >
+
+            </x-inplace-relation>
+        </div>
+
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Direct Attribute</label><br>
@@ -126,18 +145,47 @@
                 relation-column="label"
                 :filter-options-query="function($query) { return $query->where('id', '>', 1); }"
                 render-template="partials.badge-list"
-                validation="required|array"
-                validate-each="in:5,6"
+                {{-- validation="required|array"
+                validate-each="in:5,6" --}}
                 thumbnailed
                 :thumbnail-width="50"
-                {{-- :multiple --}}
+                :multiple
             >
 
             </x-inplace-relation>
         </div>
 
+        @php
+        $users = \App\Models\User::whereIn('id', [2,3])->with('badges')->get();
+        // $users = \App\Models\User::whereIn('id', [2,3])->get();
+        @endphp
+
+        @foreach ($users as $user)
+            <div class="border-bottom col-12 my-3 pb-3">
+                <label>Via Provider - Eager loaded</label><br>
+                <x-inplace-relation
+                    id="AUTHOR_BADGES"
+                    :model="$user"
+                >
+
+                </x-inplace-relation>
+            </div>
+        @endforeach
+
+        @foreach ($users as $user)
+            <div class="border-bottom col-12 my-3 pb-3">
+                <label>Via Provider - Eager loaded 2nd time</label><br>
+                <x-inplace-relation
+                    id="AUTHOR_BADGES"
+                    :model="$user"
+                >
+
+                </x-inplace-relation>
+            </div>
+        @endforeach
+
         <div class="border-bottom col-12 my-3 pb-3">
-            <label>Via Provider</label><br>
+            <label>Via Provider duplicate</label><br>
             <x-inplace-relation
                 id="AUTHOR_BADGES"
                 model="App\Models\User:3"
@@ -146,6 +194,7 @@
             </x-inplace-relation>
         </div>
 
+        {{--
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Via Provider</label><br>
             <x-inplace-relation
@@ -160,6 +209,7 @@
                 </x-slot>
             </x-inplace-relation>
         </div>
+        --}}
     </div>
 
     <div class="col-12 col-md-4">
