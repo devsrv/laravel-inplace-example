@@ -162,7 +162,7 @@
 
         @foreach ($users as $user)
             <div class="border-bottom col-12 my-3 pb-3">
-                <label>Via Provider - Eager loaded</label><br>
+                <label>Via Field Maker - Eager loaded</label><br>
                 <x-inplace-relation
                     id="AUTHOR_BADGES"
                     :model="$user"
@@ -174,7 +174,7 @@
 
         @foreach ($users as $user)
             <div class="border-bottom col-12 my-3 pb-3">
-                <label>Via Provider - Eager loaded 2nd time</label><br>
+                <label>Via Field Maker - Eager loaded 2nd time</label><br>
                 <x-inplace-relation
                     id="AUTHOR_BADGES"
                     :model="$user"
@@ -185,18 +185,7 @@
         @endforeach
 
         <div class="border-bottom col-12 my-3 pb-3">
-            <label>Via Provider duplicate</label><br>
-            <x-inplace-relation
-                id="AUTHOR_BADGES"
-                model="App\Models\User:3"
-            >
-
-            </x-inplace-relation>
-        </div>
-
-        {{--
-        <div class="border-bottom col-12 my-3 pb-3">
-            <label>Via Provider</label><br>
+            <label>Via Field Maker - limit one option selection - with extra markup</label><br>
             <x-inplace-relation
                 id="AUTHOR_BADGES2"
                 model="App\Models\User:3"
@@ -209,7 +198,7 @@
                 </x-slot>
             </x-inplace-relation>
         </div>
-        --}}
+
     </div>
 
     <div class="col-12 col-md-4">
