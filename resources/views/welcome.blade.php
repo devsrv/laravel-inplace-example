@@ -14,7 +14,6 @@
                 :model="\App\Models\User::find(1)"
                 column="name"
                 validation="required|min:10"
-                :authorize="true"
             >
             {{ \App\Models\User::find(1)->name }}
             </x-inplace-text>
@@ -34,6 +33,19 @@
         </div>
 
         <div class="border-bottom col-12 my-3 pb-3">
+            <label>With Model slotted custom save + (manual authorization)</label>
+            <x-inplace-text
+                model="App\Models\Post:1"
+                column="topic"
+                :save-using="new \App\Http\Inplace\Requests\CustomSave"
+                validation="required|min:10"
+            >
+                {{ \App\Models\Post::find(1)->topic }}
+            </x-inplace-text>
+        </div>
+
+        {{--
+        <div class="border-bottom col-12 my-3 pb-3">
             @php
             // $rules = serialize(['required', \Illuminate\Validation\Rule::in(['11', '12']), 'min:2']);
             $rules = serialize(['required', 'exists:users,name']);
@@ -44,7 +56,6 @@
                 model="App\Models\User:1"
                 column="name"
                 :validation="$rules"
-                :authorize="true"
             >
                 {{ \App\Models\User::find(1)->name }}
             </x-inplace-text>
@@ -56,7 +67,6 @@
                 model="App\Models\User:1"
                 column="email"
                 validation="required|email"
-                :authorize="false"
             >
             <x-slot name="before"><div class="myclass anotherclass"><h4></x-slot>
             <x-slot name="after"></h4></div></x-slot>
@@ -70,7 +80,7 @@
             <x-inplace-text
                 :model="\App\Models\Post::find(1)"
                 :value="\App\Models\Post::find(1)->description"
-                saveusing="App\Http\Inplace\CustomSave"
+                save-using="App\Http\Inplace\CustomSave"
             />
         </div>
 
@@ -79,9 +89,8 @@
             <x-inplace-text
                 model="App\Models\Post:1"
                 column="topic"
-                saveusing="App\Http\Inplace\CustomSave"
+                save-using="App\Http\Inplace\CustomSave"
                 validation="required|min:10"
-                :authorize="false"
             >
                 {{ \App\Models\Post::find(1)->topic }}
             </x-inplace-text>
@@ -97,6 +106,7 @@
             {{ \App\Models\Post::find(1)->title }}
             </x-inplace-text>
         </div>
+        --}}
 
     </div>
 
