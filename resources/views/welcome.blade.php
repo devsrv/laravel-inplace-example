@@ -3,7 +3,6 @@
 @section('content')
 
 <div class="row">
-    {{--
     <div class="col-12 col-md-4">
         <div class="alert alert-primary" role="alert">
             <h2>Inline text editable</h2>
@@ -11,19 +10,19 @@
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Simplest</label>
-            <x-inplace-inline
+            <x-inplace-text
                 :model="\App\Models\User::find(1)"
                 column="name"
                 validation="required|min:10"
                 :authorize="true"
             >
             {{ \App\Models\User::find(1)->name }}
-            </x-inplace-inline>
+            </x-inplace-text>
         </div>
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>using provider config</label>
-            <x-inplace-inline
+            <x-inplace-text
                 id="USERNAME"
                 :model="\App\Models\User::find(1)"
             >
@@ -31,9 +30,8 @@
             <x-slot name="after"></h4></div></x-slot>
 
             {{ \App\Models\User::find(1)->name }}
-            </x-inplace-inline>
+            </x-inplace-text>
         </div>
-
 
         <div class="border-bottom col-12 my-3 pb-3">
             @php
@@ -42,19 +40,19 @@
             @endphp
 
             <label>Complex validation rules</label>
-            <x-inplace-inline
+            <x-inplace-text
                 model="App\Models\User:1"
                 column="name"
                 :validation="$rules"
                 :authorize="true"
             >
                 {{ \App\Models\User::find(1)->name }}
-            </x-inplace-inline>
+            </x-inplace-text>
         </div>
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Slotted Markup with global authorize override</label>
-            <x-inplace-inline
+            <x-inplace-text
                 model="App\Models\User:1"
                 column="email"
                 validation="required|email"
@@ -64,12 +62,12 @@
             <x-slot name="after"></h4></div></x-slot>
 
             {{ \App\Models\User::find(1)->email }}
-            </x-inplace-inline>
+            </x-inplace-text>
         </div>
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Custom Save</label>
-            <x-inplace-inline
+            <x-inplace-text
                 :model="\App\Models\Post::find(1)"
                 :value="\App\Models\Post::find(1)->description"
                 saveusing="App\Http\Inplace\CustomSave"
@@ -78,7 +76,7 @@
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>With Model slotted custom save + (manual authorization)</label>
-            <x-inplace-inline
+            <x-inplace-text
                 model="App\Models\Post:1"
                 column="topic"
                 saveusing="App\Http\Inplace\CustomSave"
@@ -86,22 +84,21 @@
                 :authorize="false"
             >
                 {{ \App\Models\Post::find(1)->topic }}
-            </x-inplace-inline>
+            </x-inplace-text>
         </div>
 
         <div class="border-bottom col-12 my-3 pb-3">
             <label>Render as custom</label>
-            <x-inplace-inline
+            <x-inplace-text
                 model="App\Models\Post:1"
                 column="title"
                 render-as="CustomInlineRender"
             >
             {{ \App\Models\Post::find(1)->title }}
-            </x-inplace-inline>
+            </x-inplace-text>
         </div>
 
     </div>
-    --}}
 
     <div class="col-12 col-md-4">
         <div class="alert alert-primary" role="alert">
