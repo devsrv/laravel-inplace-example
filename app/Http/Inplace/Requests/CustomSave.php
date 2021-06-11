@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Inplace;
+namespace App\Http\Inplace\Requests;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -10,7 +10,7 @@ class CustomSave
 {
     use AuthorizesRequests, SpatieAuthorize;
 
-    public function save($model, $column, $value)
+    public function __invoke($model, $column, $value)
     {
         /*-----------------------------
         | PARAMS
