@@ -3,6 +3,7 @@
 namespace App\Http\Inplace;
 
 use devsrv\inplace\InlineText;
+use App\Http\Inplace\Requests\CustomSave;
 
 class Text
 {
@@ -13,10 +14,10 @@ class Text
             ->column('name')
             ->validation(['required', 'min:10'])
             // ->authorizeUsing(fn() => ! auth()->check())
-            ->bypassAuthorize(),
-            // ->middleware(['auth'])
+            ->bypassAuthorize()
+            ->middleware(['auth'])
             // ->renderComponent('CustomInlineRender')
-            // ->saveUsing(\App\Http\Inplace\CustomSave::class)
+            ->saveUsing(new CustomSave)
         ];
     }
 }
