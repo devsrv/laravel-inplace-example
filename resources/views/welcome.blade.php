@@ -44,7 +44,6 @@
             </x-inplace-text>
         </div>
 
-        {{--
         <div class="border-bottom col-12 my-3 pb-3">
             @php
             // $rules = serialize(['required', \Illuminate\Validation\Rule::in(['11', '12']), 'min:2']);
@@ -79,8 +78,9 @@
             <label>Custom Save</label>
             <x-inplace-text
                 :model="\App\Models\Post::find(1)"
+                column="topic"
                 :value="\App\Models\Post::find(1)->description"
-                save-using="App\Http\Inplace\CustomSave"
+                :save-using="new \App\Http\Inplace\Requests\CustomSave"
             />
         </div>
 
@@ -89,7 +89,7 @@
             <x-inplace-text
                 model="App\Models\Post:1"
                 column="topic"
-                save-using="App\Http\Inplace\CustomSave"
+                :save-using="new \App\Http\Inplace\Requests\CustomSave"
                 validation="required|min:10"
             >
                 {{ \App\Models\Post::find(1)->topic }}
@@ -106,7 +106,6 @@
             {{ \App\Models\Post::find(1)->title }}
             </x-inplace-text>
         </div>
-        --}}
 
     </div>
 
