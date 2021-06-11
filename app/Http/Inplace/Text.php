@@ -2,19 +2,19 @@
 
 namespace App\Http\Inplace;
 
-use devsrv\inplace\InlineEdit;
+use devsrv\inplace\InlineText;
 
-class Inline
+class Text
 {
     public static function config()
     {
         return [
-            InlineEdit::make('USERNAME')
+            InlineText::make('USERNAME')
             ->column('name')
             ->validation(['required', 'min:10'])
-            ->authorize(true)
+            // ->authorizeUsing(fn() => ! auth()->check())
+            ->bypassAuthorize(),
             // ->middleware(['auth'])
-            // ->withoutMiddleware()
             // ->renderComponent('CustomInlineRender')
             // ->saveUsing(\App\Http\Inplace\CustomSave::class)
         ];
