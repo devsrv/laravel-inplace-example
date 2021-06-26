@@ -1,3 +1,5 @@
-@foreach ($items as $item)
+@forelse ($items as $item)
     <span class="badge badge rounded-pill bg-primary">{{ $item->label }}</span>
-@endforeach
+@empty
+    <span>Nothing here ...</span>
+@endforelse
