@@ -46,8 +46,8 @@
 
         <div class="border-bottom col-12 my-3 pb-3">
             @php
-            // $rules = serialize(['required', \Illuminate\Validation\Rule::in(['11', '12']), 'min:2']);
-            $rules = serialize(['required', 'exists:users,name']);
+            // $rules = ['required', \Illuminate\Validation\Rule::in(['11', '12']), 'min:2'];
+            $rules = ['required', 'exists:users,name'];
             @endphp
 
             <label>Complex validation rules</label>
@@ -196,12 +196,6 @@
                 id="AUTHOR_BADGES2"
                 model="App\Models\User:3"
             >
-                <x-slot name="before">
-                    <div class="myclass anotherclass"><h4>
-                </x-slot>
-                <x-slot name="after">
-                    </h4></div>
-                </x-slot>
             </x-inplace-relation>
         </div>
 
