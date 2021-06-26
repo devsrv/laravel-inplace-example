@@ -15,7 +15,8 @@ class Text
             ->validation(['required', 'min:10'])
             // ->authorizeUsing(fn() => ! auth()->check())
             ->bypassAuthorize()
-            ->middleware(['auth'])
+            ->middleware(['auth', 'throttle:inplace'])
+            // ->middleware(['auth'])
             // ->renderComponent('CustomInlineRender')
             ->saveUsing(new CustomSave)
         ];

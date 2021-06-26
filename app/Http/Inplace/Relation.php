@@ -27,7 +27,7 @@ class Relation
             // ->renderUsing(fn($q) => $q->pluck('label')->implode('/'))
             ->validation(['required', 'array'])
             // ->validateEach(['in:5,6'])
-            ->middleware(['auth'])
+            ->middleware(['auth', 'throttle:author_badges'])
             ->saveUsing(new SaveAuthorBadge)
             // ->authorizeUsing(fn() => ! auth()->check()),
             ->bypassAuthorize(),
@@ -36,6 +36,7 @@ class Relation
             RelationManager::make('AUTHOR_BADGES2')
             ->relation('badges', 'label')
             ->thumbnailed()
+            ->middleware(['auth', 'throttle:inplace'])
             ->renderUsing(fn($q) => $q->pluck('label')->implode('/'))
             ->multiple(false),
         ];
