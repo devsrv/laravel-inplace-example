@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use devsrv\inplace\RateLimiter as InplaceFieldRateLimiter;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -58,6 +59,12 @@ class RouteServiceProvider extends ServiceProvider
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
+        });
+
+        InplaceFieldRateLimiter::for('author_badges')->perMinute(1);
+
+        RateLimiter::for('inplace', function (Request $request) {
+            return Limit::perMinute(1)->by(optional($request->user())->id ?: $request->ip());
         });
     }
 }
